@@ -63,3 +63,7 @@ crashlytics-build.properties
 
 
 jam/Library/
+
+jam/Logs/
+
+jam/Temp/
