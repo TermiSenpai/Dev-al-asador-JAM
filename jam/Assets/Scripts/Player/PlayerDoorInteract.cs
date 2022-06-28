@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerDoorInteract : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer wall;
+    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] Tilemap tileMap;
+    [SerializeField] private float fadeSpeed;
     [SerializeField] private bool canFadeOut = true;
     [SerializeField] private bool canFadeIn = false;
 
@@ -18,7 +21,7 @@ public class PlayerDoorInteract : MonoBehaviour
     IEnumerator FadeOut()
     {
         canFadeOut = false;
-        for(float i = 1f; i >= -0.05f; i -= 0.1f)
+        for(float i = 1f; i >= -0.05f; i -= fadeSpeed)
         {
             changeWallColor(i);
             yield return new WaitForSeconds(0.05f);
@@ -29,7 +32,7 @@ public class PlayerDoorInteract : MonoBehaviour
     IEnumerator FadeIn()
     {
         canFadeIn=false;
-        for (float i = -0.05f; i <= 1; i += 0.1f)
+        for (float i = -0.05f; i <= 1; i += fadeSpeed)
         {
             changeWallColor(i);
             yield return new WaitForSeconds(0.05f);
@@ -39,8 +42,17 @@ public class PlayerDoorInteract : MonoBehaviour
 
     private void changeWallColor(float alpha)
     {
-        Color c = wall.material.color;
-        c.a = alpha;
-        wall.material.color = c;
+        if(tileMap != null)
+        {
+            Color tileColor = tileMap.color;
+            tileColor.a = alpha;
+            tileMap.color = tileColor;
+        }
+        if(sprite != null)
+        {
+            Color spriteColor = sprite.material.color;
+            spriteColor.a = alpha;
+            sprite.material.color = spriteColor;
+        }
     }
 }
