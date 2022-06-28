@@ -5,32 +5,37 @@ using UnityEngine;
 public class PlayerDoorInteract : MonoBehaviour
 {
     [SerializeField] SpriteRenderer wall;
-    private bool canFade = true;
+    [SerializeField] private bool canFadeOut = true;
+    [SerializeField] private bool canFadeIn = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Door") && canFade) StartCoroutine(FadeOut());
+        if (collision.CompareTag("Door") && canFadeOut) StartCoroutine(FadeOut());
+        if (collision.CompareTag("Door") && canFadeIn) StartCoroutine(FadeIn());
         
     }
 
     IEnumerator FadeOut()
     {
-        canFade = false;
-        for(float i = 1f; i >= -0.05f; i -= 0.05f)
+        canFadeOut = false;
+        for(float i = 1f; i >= -0.05f; i -= 0.1f)
         {
             changeWallColor(i);
             yield return new WaitForSeconds(0.05f);
         }
+        canFadeIn = true;
     }
 
-    //IEnumerator FadeIn()
-    //{
-    //    for(float i = 0.05f; i <= 1; i += 0.05f)
-    //    {
-    //        changeWallColor(i);
-    //        yield return new WaitForSeconds(0.05f);
-    //    }
-    //}
+    IEnumerator FadeIn()
+    {
+        canFadeIn=false;
+        for (float i = -0.05f; i <= 1; i += 0.1f)
+        {
+            changeWallColor(i);
+            yield return new WaitForSeconds(0.05f);
+        }
+        canFadeOut = true;
+    }
 
     private void changeWallColor(float alpha)
     {
