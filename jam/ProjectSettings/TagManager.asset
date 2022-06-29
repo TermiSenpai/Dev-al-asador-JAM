@@ -48,11 +48,11 @@ TagManager:
   - name: Background
     uniqueID: 1658226147
     locked: 0
-  - name: Player
-    uniqueID: 1350343275
-    locked: 0
   - name: Wall
     uniqueID: 2904613511
+    locked: 0
+  - name: Player
+    uniqueID: 1350343275
     locked: 0
   - name: Floor
     uniqueID: 2208196575
