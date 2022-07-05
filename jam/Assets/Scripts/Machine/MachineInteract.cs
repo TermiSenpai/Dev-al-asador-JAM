@@ -48,17 +48,11 @@ public class MachineInteract : MonoBehaviour
         }
     }
 
-    void exitminigame()
+    private void exitminigame()
     {
             minigame.SetActive(false);
             player.SetActive(true);
             playerMove.canMove = true;
 
-    }
-
-    // TEMPORAL
-    public void Pause(InputAction.CallbackContext callback)
-    {
-        
     }
 }
