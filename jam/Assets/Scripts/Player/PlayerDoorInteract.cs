@@ -7,9 +7,16 @@ public class PlayerDoorInteract : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Tilemap tileMap;
+    [SerializeField] private GameObject exteriorWall;
     [SerializeField] private float fadeSpeed;
     [SerializeField] private bool canFadeOut = true;
     [SerializeField] private bool canFadeIn = false;
+
+    private void Start()
+    {
+        exteriorWall.SetActive(true);
+        
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
