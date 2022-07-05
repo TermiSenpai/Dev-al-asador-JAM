@@ -67,12 +67,12 @@ TagManager:
   - name: Wall
     uniqueID: 2904613511
     locked: 0
-  - name: Minigame
+  - name: BlackLine
+    uniqueID: 3887931775
+    locked: 0
+  - name: MinigameBackground
     uniqueID: 446060983
     locked: 0
   - name: MinigameSprite
     uniqueID: 3442646611
-    locked: 0
-  - name: BlackLine
-    uniqueID: 3887931775
     locked: 0
