@@ -8,9 +8,12 @@ public class MachineInteract : MonoBehaviour
     [SerializeField] private GameObject text;
     [SerializeField] private bool isTouchingMachine;
     [SerializeField] private PlayerMove player;
+    [SerializeField] private GameObject minigame;
+    [SerializeField] private GameObject cameraPos;
 
     void Start()
     {
+        minigame.SetActive(false);
         text.SetActive(false);
         isTouchingMachine = false;
     }
@@ -37,6 +40,8 @@ public class MachineInteract : MonoBehaviour
         if (isTouchingMachine && callback.phase == InputActionPhase.Started)
         {
             player.canMove = false;
+            //minigame.transform.position = cameraPos.transform.position - new Vector3(0,0,cameraPos.transform.position.z);
+            minigame.SetActive(true);
         }
     }
 
@@ -44,6 +49,9 @@ public class MachineInteract : MonoBehaviour
     public void Pause(InputAction.CallbackContext callback)
     {
         if (isTouchingMachine && callback.phase == InputActionPhase.Started)
+        {
             player.canMove = true;
+            minigame.SetActive(false);
+        }
     }
 }
