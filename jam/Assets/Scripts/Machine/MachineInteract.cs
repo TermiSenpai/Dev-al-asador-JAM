@@ -18,6 +18,7 @@ public class MachineInteract : MonoBehaviour
 
 
     [Header("LEVEL MUSIC")]
+    [SerializeField] private float delayStartTime;
     [SerializeField] public bool levelCompleted;
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip musicToPlay;
@@ -57,13 +58,14 @@ public class MachineInteract : MonoBehaviour
             minigame.transform.position = cameraPos.transform.position - new Vector3(0, cameraPos.transform.position.y - 0.25f, cameraPos.transform.position.z);
             minigame.SetActive(true);
             player.SetActive(false);
-            source.Play();
+            source.PlayDelayed(delayStartTime);
             Invoke("exitminigame", musicDuration);
         }
     }
 
     private void exitminigame()
     {
+        source.Stop();
         animator.SetBool("Completed", true);
         levelCompleted = true;
         minigame.SetActive(false);
