@@ -9,6 +9,7 @@ TagManager:
   - Perfect
   - Good
   - Lose
+  - Frame
   layers:
   - Default
   - TransparentFX
