@@ -5,12 +5,23 @@ using UnityEngine.InputSystem;
 
 public class MachineInteract : MonoBehaviour
 {
-    [SerializeField] private GameObject text;
-    [SerializeField] private bool isTouchingMachine;
+    [Header("ELEMENTS")]
     [SerializeField] private PlayerMove playerMove;
-    [SerializeField] private GameObject minigame;
     [SerializeField] private GameObject cameraPos;
     [SerializeField] private GameObject player;
+    [SerializeField] private bool isTouchingMachine;
+    [SerializeField] private GameObject text;
+    [SerializeField] private Animator animator;
+
+    [Header("OPEN LEVEL")]
+    [SerializeField] private GameObject minigame;
+
+
+    [Header("LEVEL MUSIC")]
+    [SerializeField] public bool levelCompleted;
+    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioClip musicToPlay;
+    [SerializeField] private float musicDuration;
 
     void Start()
     {
@@ -26,6 +37,7 @@ public class MachineInteract : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(!levelCompleted)
         text.SetActive(true);
         isTouchingMachine = true;
     }
@@ -38,21 +50,25 @@ public class MachineInteract : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext callback)
     {
-        if (isTouchingMachine && callback.phase == InputActionPhase.Started)
+        if (isTouchingMachine && callback.phase == InputActionPhase.Started && !levelCompleted)
         {
+            source.clip = musicToPlay;
             playerMove.canMove = false;
             minigame.transform.position = cameraPos.transform.position - new Vector3(0, cameraPos.transform.position.y - 0.25f, cameraPos.transform.position.z);
             minigame.SetActive(true);
             player.SetActive(false);
-            //Invoke("exitminigame", 2);
+            source.Play();
+            Invoke("exitminigame", musicDuration);
         }
     }
 
     private void exitminigame()
     {
-            minigame.SetActive(false);
-            player.SetActive(true);
-            playerMove.canMove = true;
+        animator.SetBool("Completed", true);
+        levelCompleted = true;
+        minigame.SetActive(false);
+        player.SetActive(true);
+        playerMove.canMove = true;
 
     }
 }

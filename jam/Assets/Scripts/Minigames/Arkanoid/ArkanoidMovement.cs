@@ -20,7 +20,7 @@ public class ArkanoidMovement : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
 
-        transform.Rotate(0,0,horizontal * rotationSpeed * Time.deltaTime);
+        transform.Rotate(0,0,-horizontal * rotationSpeed * Time.deltaTime);
     }
 }
 

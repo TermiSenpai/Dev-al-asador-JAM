@@ -8,6 +8,7 @@ TagManager:
   - Machine
   - Perfect
   - Good
+  - Lose
   layers:
   - Default
   - TransparentFX
@@ -77,4 +78,10 @@ TagManager:
     locked: 0
   - name: MinigameSprite
     uniqueID: 3442646611
+    locked: 0
+  - name: MinigameNotes
+    uniqueID: 1171513499
+    locked: 0
+  - name: Frame
+    uniqueID: 2207898957
     locked: 0
