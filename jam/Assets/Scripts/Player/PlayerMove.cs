@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] private float speed;
     [SerializeField] public bool canMove;
+    [SerializeField] Animator anim;
+    [SerializeField] private bool facingRight;
 
     private void Start()
     {
@@ -18,11 +20,29 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         playerMove();
+
+        if (curMoveInput.x < 0 && facingRight)
+        {
+            flip();
+        }
+        if (curMoveInput.x > 0 && !facingRight)
+        {
+            flip();
+        }
     }
 
     private void playerMove()
     {
         rigid.velocity = curMoveInput * speed;
+    }
+
+    private void flip()
+    {
+        Vector2 newscale = transform.localScale;
+        newscale.x *= -1;
+        transform.localScale = newscale;
+
+        facingRight = !facingRight;
     }
 
     #region input actions
@@ -34,10 +54,13 @@ public class PlayerMove : MonoBehaviour
             if (context.phase == InputActionPhase.Performed)
             {
                 curMoveInput = context.ReadValue<Vector2>();
+                anim.SetBool("Walking", true);
+
             }
             else if (context.phase == InputActionPhase.Canceled)
             {
                 curMoveInput = Vector2.zero;
+                anim.SetBool("Walking", false);
             }
 
         }
@@ -56,6 +79,11 @@ public class PlayerMove : MonoBehaviour
     public void setCanMove(bool set)
     {
         canMove = set;
+    }
+
+    public bool getFacing()
+    {
+        return facingRight;
     }
     #endregion
 }
