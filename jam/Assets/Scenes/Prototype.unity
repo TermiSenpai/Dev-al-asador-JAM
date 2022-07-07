@@ -879,6 +879,7 @@ MonoBehaviour:
   fadeSpeed: 0.2
   canFadeOut: 1
   canFadeIn: 0
+  player: {fileID: 95332198}
 --- !u!95 &95332201
 Animator:
   serializedVersion: 4
