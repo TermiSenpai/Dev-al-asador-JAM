@@ -2171,6 +2171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee7dc5814b3e1e4cb7b57745f67faf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curMoveInput: {x: 0, y: 0}
   rigid: {fileID: 95332199}
   speed: 3
   canMove: 0
@@ -26561,7 +26562,7 @@ MonoBehaviour:
   levelCompleted: 0
   source: {fileID: 987006169}
   musicToPlay: {fileID: 8300000, guid: b6dc89824818fa2428de76ba184f2b48, type: 3}
-  musicDuration: 77
+  musicDuration: 80
 --- !u!61 &2137901410
 BoxCollider2D:
   m_ObjectHideFlags: 0
