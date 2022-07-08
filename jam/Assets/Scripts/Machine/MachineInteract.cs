@@ -71,6 +71,6 @@ public class MachineInteract : MonoBehaviour
         minigame.SetActive(false);
         player.SetActive(true);
         playerMove.canMove = true;
-
+        playerMove.curMoveInput = Vector2.zero;
     }
 }
