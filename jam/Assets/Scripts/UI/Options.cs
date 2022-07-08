@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class Options : MonoBehaviour
 {
-    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioSource[] sources;
     [SerializeField] Slider audioSlider;
 
     [SerializeField] private MenuController controller;
 
     public void onChangeSliderValue()
     {
-        source.volume = audioSlider.value;
+        for(int i = 0; i < sources.Length - 1; i++)
+            sources[i].volume = audioSlider.value;
     }
 
     private void Update()
