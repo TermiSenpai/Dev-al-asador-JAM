@@ -28625,6 +28625,7 @@ MonoBehaviour:
   source: {fileID: 987006169}
   musicToPlay: {fileID: 8300000, guid: b6dc89824818fa2428de76ba184f2b48, type: 3}
   musicDuration: 80
+  completedSound: {fileID: 2137901411}
 --- !u!61 &2137901410
 BoxCollider2D:
   m_ObjectHideFlags: 0

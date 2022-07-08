@@ -23,6 +23,7 @@ public class MachineInteract : MonoBehaviour
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip musicToPlay;
     [SerializeField] private float musicDuration;
+    [SerializeField] private AudioSource completedSound;
 
     void Start()
     {
@@ -72,5 +73,6 @@ public class MachineInteract : MonoBehaviour
         player.SetActive(true);
         playerMove.canMove = true;
         playerMove.curMoveInput = Vector2.zero;
+        completedSound.Play();
     }
 }
