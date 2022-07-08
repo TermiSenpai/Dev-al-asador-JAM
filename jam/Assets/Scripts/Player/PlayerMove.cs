@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] public bool canMove;
     [SerializeField] Animator anim;
     [SerializeField] private bool facingRight;
+    [SerializeField] private GameObject mainMenu;
 
     private void Start()
     {
@@ -62,6 +63,17 @@ public class PlayerMove : MonoBehaviour
                 anim.SetBool("Walking", false);
             }
 
+        }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            curMoveInput = Vector2.zero;
+            canMove = false;
+            mainMenu.SetActive(true);
+            anim.SetBool("Walking", false);
         }
     }
     #endregion
