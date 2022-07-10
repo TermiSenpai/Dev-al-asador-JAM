@@ -11,7 +11,13 @@ public class MachineInteract : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private bool isTouchingMachine;
     [SerializeField] private GameObject text;
+    [SerializeField] private Machine2 machine2;
+
+    [Header("Animators")]
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator transportator;
+    [SerializeField] private Animator Machine2;
+
 
     [Header("OPEN LEVEL")]
     [SerializeField] private GameObject minigame;
@@ -68,11 +74,14 @@ public class MachineInteract : MonoBehaviour
     {
         source.Stop();
         animator.SetBool("Completed", true);
+        transportator.SetBool("Completed", true);
+        Machine2.SetBool("Completed", true);
         levelCompleted = true;
         minigame.SetActive(false);
         player.SetActive(true);
         playerMove.canMove = true;
         playerMove.curMoveInput = Vector2.zero;
         completedSound.Play();
+        machine2.arkanoidCompleted = true;
     }
 }
