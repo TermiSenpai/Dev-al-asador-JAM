@@ -7,18 +7,38 @@ public class PlayerDoorInteract : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Tilemap tileMap;
+    [SerializeField] private GameObject exteriorWall;
     [SerializeField] private float fadeSpeed;
     [SerializeField] private bool canFadeOut = true;
     [SerializeField] private bool canFadeIn = false;
+    [SerializeField] private PlayerMove player;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-        if (collision.CompareTag("Door") && canFadeOut) StartCoroutine(FadeOut());
-        if (collision.CompareTag("Door") && canFadeIn) StartCoroutine(FadeIn());
+        exteriorWall.SetActive(true);
         
     }
 
-    IEnumerator FadeOut()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door") && canFadeOut && player.getFacing()) StartCoroutine(FadeOut());
+        if (collision.CompareTag("Door") && canFadeIn && player.getFacing() == false) StartCoroutine(FadeIn());        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door") && canFadeOut && player.getFacing()) StartCoroutine(FadeOut());
+        if (collision.CompareTag("Door") && canFadeIn && player.getFacing() == false) StartCoroutine(FadeIn());        
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door") && canFadeOut && player.getFacing()) StartCoroutine(FadeOut());
+        if (collision.CompareTag("Door") && canFadeIn && player.getFacing() == false) StartCoroutine(FadeIn());  
+    }
+
+     IEnumerator FadeOut()
     {
         canFadeOut = false;
         for(float i = 1f; i >= -0.05f; i -= fadeSpeed)
@@ -32,7 +52,7 @@ public class PlayerDoorInteract : MonoBehaviour
     IEnumerator FadeIn()
     {
         canFadeIn=false;
-        for (float i = -0.05f; i <= 1; i += fadeSpeed)
+        for (float i = -0.05f; i <= 1.2f; i += fadeSpeed)
         {
             changeWallColor(i);
             yield return new WaitForSeconds(0.05f);

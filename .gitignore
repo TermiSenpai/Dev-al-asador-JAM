@@ -69,3 +69,9 @@ jam/Logs/
 jam/UserSettings/Layouts/
 
 jam/Temp/
+
+*.cache
+
+jam/Assets/Scripts/Minigames.meta
+
+*.meta
