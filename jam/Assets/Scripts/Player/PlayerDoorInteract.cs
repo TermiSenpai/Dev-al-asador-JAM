@@ -52,7 +52,7 @@ public class PlayerDoorInteract : MonoBehaviour
     IEnumerator FadeIn()
     {
         canFadeIn=false;
-        for (float i = -0.05f; i <= 1; i += fadeSpeed)
+        for (float i = -0.05f; i <= 1.2f; i += fadeSpeed)
         {
             changeWallColor(i);
             yield return new WaitForSeconds(0.05f);
