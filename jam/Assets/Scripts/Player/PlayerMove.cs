@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] private bool facingRight;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] public bool gameCompleted;
 
     private void Start()
     {
