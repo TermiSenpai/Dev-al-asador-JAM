@@ -7,10 +7,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource source;
 
 
-
-    void Start()
+    private void Awake()
     {
-        
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
